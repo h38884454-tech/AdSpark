@@ -19,7 +19,7 @@ def test_generate_ad_variants_returns_three_variants():
     assert response.product_name == "NovaFit"
     assert response.platform == "instagram"
     assert response.source in {"local", "openai"}
-    assert len(response.variants) >= 3
+    assert len(response.variants) == 3
     assert all(variant.headline for variant in response.variants)
     assert all(variant.body for variant in response.variants)
     assert all(variant.cta for variant in response.variants)

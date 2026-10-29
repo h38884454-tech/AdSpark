@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdSpark</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='styles.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">AI ad generator</p>
+        <h1>AdSpark</h1>
+        <p class="subtitle">Generate campaign-ready ad copy in seconds.</p>
+      </section>
+
+      <section class="panel">
+        <form id="ad-form">
+          <div class="grid">
+            <label>
+              Product name
+              <input name="product_name" type="text" value="NovaFit" required />
+            </label>
+
+            <label>
+              Audience
+              <input name="audience" type="text" value="busy professionals" required />
+            </label>
+
+            <label>
+              Platform
+              <select name="platform">
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+                <option value="google">Google</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="youtube">YouTube</option>
+                <option value="tiktok">TikTok</option>
+                <option value="website">Website</option>
+              </select>
+            </label>
+
+            <label>
+              Goal
+              <select name="goal">
+                <option value="sales">Sales</option>
+                <option value="traffic">Traffic</option>
+                <option value="awareness">Awareness</option>
+                <option value="engagement">Engagement</option>
+              </select>
+            </label>
+
+            <label>
+              Tone
+              <select name="tone">
+                <option value="bold">Bold</option>
+                <option value="playful">Playful</option>
+                <option value="luxury">Luxury</option>
+                <option value="trustworthy">Trustworthy</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </label>
+
+            <label>
+              CTA
+              <input name="cta" type="text" value="Start your plan" />
+            </label>
+          </div>
+
+          <label>
+            Keywords
+            <input name="keywords" type="text" value="fitness, smart, daily" placeholder="fitness, smart, daily" />
+          </label>
+
+          <label>
+            Features
+            <input name="features" type="text" value="AI coaching, 7-day progress tracking, Minimal setup" placeholder="AI coaching, analytics, automation" />
+          </label>
+
+          <button type="submit">Generate ads</button>
+        </form>
+      </section>
+
+      <section id="results" class="results hidden">
+        <h2>Generated variants</h2>
+      </section>
+    </main>
+
+    <script src="{{ request.url_for('static', path='app.js') }}"></script>
+  </body>
+</html>

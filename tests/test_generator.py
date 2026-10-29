@@ -1,38 +1,12 @@
-from __future__ import annotations
+FROM python:3.12-slim
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+WORKDIR /app
 
-from adspark.generator import generate_ad_variants
-from adspark.models import AdRequest
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-app = FastAPI(title="AdSpark API", version="1.0.0")
+COPY . .
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+EXPOSE 8000
 
-
-@app.get("/")
-def root() -> dict[str, str]:
-    return {"message": "Welcome to AdSpark"}
-
-
-@app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "ok"}
-
-
-@app.post("/api/ads/generate")
-def generate_ads(request: AdRequest):
-    return generate_ad_variants(request)
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

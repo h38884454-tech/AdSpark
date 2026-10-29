@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Literal
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -13,8 +13,8 @@ class AdRequest(BaseModel):
     tone: Literal["bold", "playful", "luxury", "trustworthy", "urgent"] = "bold"
     platform: Literal["instagram", "facebook", "google", "linkedin", "youtube", "tiktok", "website"] = "instagram"
     goal: Literal["awareness", "traffic", "sales", "engagement"] = "sales"
-    keywords: List[str] = Field(default_factory=list)
-    features: List[str] = Field(default_factory=list)
+    keywords: list[str] = Field(default_factory=list)
+    features: list[str] = Field(default_factory=list)
     cta: str = "Shop now"
 
 
